@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Price Tracker</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Amazon Price Tracker</h1>
+        <p><strong>URL:</strong> <a href="<%= url %>" target="_blank"><%= url %></a></p>
+        <p><strong>Main Price:</strong> <%= prices.mainPrice ? prices.mainPrice : 'Not Available' %></p>
+        <p><strong>Deal Price:</strong> <%= prices.dealPrice ? prices.dealPrice : 'Not Available' %></p>
+        <a href="/">Track Another Price</a>
+        <a href="/chart">View Price History</a>
+    </div>
+</body>
+</html>

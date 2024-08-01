@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Price Tracker - Price History</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Price History</h1>
+        <canvas id="priceChart"></canvas>
+        <a href="/">Track Another Price</a>
+    </div>
+    <script>
+        const priceData =  JSON.stringify(priceData);
+
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        const labels = priceData.map(data => new Date(data.date).toLocaleDateString());
+        const mainPrices = priceData.map(data => parseFloat(data.mainPrice || 0));
+        const dealPrices = priceData.map(data => parseFloat(data.dealPrice || 0));
+
+        const priceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Main Price',
+                    data: mainPrices,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                },
+                {
+                    label: 'Deal Price',
+                    data: dealPrices,
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
